@@ -147,6 +147,10 @@
   body.oro-mode .reset-btn { }
   body.oro-mode #theme-toggle { display: none !important; }
   body.oro-mode #oroThemeBtn { display: inline-block !important; background: #fff; color: #333; }
+  body.oro-mode .card[style*="--rc:#ffd700"] { background: linear-gradient(145deg, #4a3a10, #5c4a18) !important; border: 2px solid #ffd700 !important; box-shadow: 0 0 15px rgba(255,215,0,0.5), 0 0 30px rgba(255,215,0,0.2) !important; animation: oroGlow 2s ease-in-out infinite !important; }
+  body.oro-mode .card[style*="--rc:#ffd700"] .card-name { color: #ffd700 !important; text-shadow: 0 0 8px rgba(255,215,0,0.5) !important; }
+  body.oro-light .card[style*="--rc:#ffd700"] { background: linear-gradient(145deg, #e8d060, #d4b840) !important; border: 2px solid #b8860b !important; box-shadow: 0 0 15px rgba(184,134,11,0.4), 0 0 30px rgba(184,134,11,0.2) !important; animation: oroGlow 2s ease-in-out infinite !important; }
+  @keyframes oroGlow { 0%,100%{box-shadow:0 0 15px rgba(255,215,0,0.4),0 0 30px rgba(255,215,0,0.15);} 50%{box-shadow:0 0 25px rgba(255,215,0,0.7),0 0 50px rgba(255,215,0,0.3);} }
   #oroBtn.oro-active { background: #e0e0e0 !important; color: #333 !important; border: none !important; }
   body.oro-light { background: #c9a94e !important; color: #3a2a0a !important; }
   body.oro-light .card { background: linear-gradient(145deg, #e8d48a, #d4b84a) !important; border: 1.5px solid #a07820 !important; box-shadow: 0 2px 8px rgba(140,100,20,0.2) !important; }
