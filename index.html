@@ -136,7 +136,7 @@
   body.oro-mode .controls { background: rgba(184,134,11,0.1) !important; border-color: #6b5220 !important; }
   body.oro-mode .filter-btn { background: #3d2e12 !important; border: 1px solid #b8860b !important; color: #ffd700 !important; }
   body.oro-mode .filter-btn.active { background: rgba(184,134,11,0.3) !important; border-color: #ffd700 !important; color: #ffd700 !important; box-shadow: 0 0 8px rgba(255,215,0,0.3) !important; }
-  body.oro-mode .toggle-owned { }
+  body.oro-mode .toggle-owned { background: #3d2e12 !important; border: 1px solid #b8860b !important; color: #ffd700 !important; }
   body.oro-mode .progress-wrap { background: rgba(184,134,11,0.1) !important; border-color: #6b5220 !important; }
   body.oro-mode .progress-title { color: #ffd700 !important; }
   body.oro-mode .progress-bar-bg { background: #3d2e12 !important; }
@@ -1272,7 +1272,7 @@ function toggleOro() {
   const btn = document.getElementById('oroBtn');
   document.body.classList.toggle('oro-mode', oroActive);
   btn.textContent = oroActive ? '🙂 Normal' : '🥇 Oro';
-  btn.style.background = oroActive ? '#d9d9d9' : '#ffd700';
+  btn.style.background = oroActive ? '#e0e0e0' : '#ffd700';
   btn.style.color = oroActive ? '#333' : '#333';
   btn.style.border = oroActive ? 'none' : 'none';
   owned = oroActive ? ownedOro : ownedNormal;
