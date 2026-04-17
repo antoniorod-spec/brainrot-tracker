@@ -124,13 +124,26 @@
   #sahur-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
   .sahur-float-img { position: absolute; height: auto; opacity: 0.4; animation: sahurFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 12px rgba(180,80,0,0.3)); transition: opacity 0.5s; }
   @keyframes sahurFloat { 0%,100%{transform:translateY(0) rotate(-3deg) scale(1);} 50%{transform:translateY(-18px) rotate(3deg) scale(1.04);} }
-  body.oro-mode { background: #fff3a0 !important; transition: background 0.5s; }
-  body.oro-mode .card { background: #ff9800 !important; border-color: #ffd700 !important; }
-  body.oro-mode .card.owned { background: #2e7d32 !important; border-color: #4caf50 !important; }
-  body.oro-mode .stats-bar, body.oro-mode .sticky-bar { background: #f5a623 !important; }
-  body.oro-mode .controls { background: rgba(255,152,0,0.15) !important; }
-  body.oro-mode .progress-wrap { background: rgba(255,152,0,0.1) !important; }
-  body.oro-mode .rarity-section { background: rgba(255,152,0,0.08) !important; }
+  body.oro-mode { background: #1a1205 !important; transition: background 0.5s; color: #ffe082 !important; }
+  body.oro-mode .card { background: linear-gradient(145deg, #2a1f0a, #3d2e12) !important; border: 1.5px solid #b8860b !important; box-shadow: 0 2px 12px rgba(184,134,11,0.2) !important; }
+  body.oro-mode .card:hover { box-shadow: 0 4px 20px rgba(255,215,0,0.3) !important; }
+  body.oro-mode .card.owned { background: linear-gradient(145deg, #1a3d1a, #0d2e0d) !important; border-color: #4caf50 !important; box-shadow: 0 2px 12px rgba(76,175,80,0.3) !important; }
+  body.oro-mode .card-name { color: #fff !important; }
+  body.oro-mode .stats-bar { background: linear-gradient(135deg, #3d2e12, #5c4417) !important; border-color: #b8860b !important; }
+  body.oro-mode .sticky-bar { background: linear-gradient(135deg, #2a1f0a, #3d2e12) !important; border-bottom: 1px solid #b8860b !important; }
+  body.oro-mode .stat-pill { background: rgba(184,134,11,0.2) !important; border-color: #b8860b !important; color: #ffd700 !important; }
+  body.oro-mode .stat-pill .val { color: #ffe082 !important; }
+  body.oro-mode .controls { background: rgba(184,134,11,0.08) !important; border-color: #5c4417 !important; }
+  body.oro-mode .filter-btn { background: #2a1f0a !important; border-color: #5c4417 !important; color: #b8860b !important; }
+  body.oro-mode .filter-btn.active { background: rgba(184,134,11,0.2) !important; border-color: #ffd700 !important; color: #ffd700 !important; }
+  body.oro-mode .progress-wrap { background: rgba(184,134,11,0.08) !important; border-color: #5c4417 !important; }
+  body.oro-mode .progress-title { color: #ffd700 !important; }
+  body.oro-mode .progress-bar-bg { background: #2a1f0a !important; }
+  body.oro-mode .progress-num { color: #ffe082 !important; }
+  body.oro-mode .rarity-section { background: transparent !important; }
+  body.oro-mode .search-wrap input { background: #2a1f0a !important; border-color: #5c4417 !important; color: #ffe082 !important; }
+  body.oro-mode header { background: linear-gradient(135deg, #2a1f0a, #1a1205) !important; border-bottom: 1px solid #b8860b !important; }
+  body.oro-mode .reset-btn { border-color: #b8860b !important; color: #ffd700 !important; }
   body.oro-mode #theme-toggle { display: none !important; }
   .filter-btn.active { color: var(--text); border-color: var(--rc, #cc0000); background: rgba(200,0,0,.15); box-shadow: 0 0 8px var(--rc, #cc0000)30; }
   .toggle-owned {
