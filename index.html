@@ -124,6 +124,14 @@
   #sahur-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
   .sahur-float-img { position: absolute; height: auto; opacity: 0.4; animation: sahurFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 12px rgba(180,80,0,0.3)); transition: opacity 0.5s; }
   @keyframes sahurFloat { 0%,100%{transform:translateY(0) rotate(-3deg) scale(1);} 50%{transform:translateY(-18px) rotate(3deg) scale(1.04);} }
+  body.oro-mode { background: #fff3a0 !important; transition: background 0.5s; }
+  body.oro-mode .card { background: #ff9800 !important; border-color: #ffd700 !important; }
+  body.oro-mode .card.owned { background: #e65100 !important; border-color: #ffab00 !important; }
+  body.oro-mode .stats-bar, body.oro-mode .sticky-bar { background: #f5a623 !important; }
+  body.oro-mode .controls { background: rgba(255,152,0,0.15) !important; }
+  body.oro-mode .progress-wrap { background: rgba(255,152,0,0.1) !important; }
+  body.oro-mode .rarity-section { background: rgba(255,152,0,0.08) !important; }
+  body.oro-mode #theme-toggle { display: none !important; }
   .filter-btn.active { color: var(--text); border-color: var(--rc, #cc0000); background: rgba(200,0,0,.15); box-shadow: 0 0 8px var(--rc, #cc0000)30; }
   .toggle-owned {
     background: var(--btn-bg); border: 1px solid var(--btn-border); border-radius: 9px;
@@ -422,6 +430,7 @@ body.theme-green .card[style*="--rc:#ffd700"] .card-rarity { color: #fff200 !imp
   <div class="controls">
     <div class="search-wrap"><input type="text" id="searchInput" placeholder="Buscar brainrot..."></div>
     <button class="filter-btn active" data-rarity="All">⚡ Todos</button>
+    <button class="filter-btn" id="oroBtn" onclick="toggleOro()" style="background:#ffd700;border:none;color:#333;font-weight:800;">🥇 Oro</button>
     <button class="filter-btn" data-rarity="Common" style="--rc:#b0b0cc">⚪ Common</button>
     <button class="filter-btn" data-rarity="Rare" style="--rc:#38b6ff">🔵 Rare</button>
     <button class="filter-btn" data-rarity="Epic" style="--rc:#c84bdb">🟣 Epic</button>
@@ -1216,6 +1225,15 @@ render();
 
 
 var sahurActive = false;
+var oroActive = false;
+function toggleOro() {
+  oroActive = !oroActive;
+  const btn = document.getElementById('oroBtn');
+  document.body.classList.toggle('oro-mode', oroActive);
+  btn.textContent = oroActive ? '🥇 Normal' : '🥇 Oro';
+  btn.style.background = oroActive ? '#ff9800' : '#ffd700';
+  btn.style.color = oroActive ? '#fff' : '#333';
+}
 function toggleSahur() {
   sahurActive = !sahurActive;
   const btn = document.getElementById('sahurBtn');
