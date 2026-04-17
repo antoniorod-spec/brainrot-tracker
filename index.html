@@ -146,10 +146,11 @@
   body.oro-mode header { background: linear-gradient(135deg, #3d2e12, #2e2207) !important; border-bottom: 1px solid #b8860b !important; }
   body.oro-mode .reset-btn { border-color: #b8860b !important; color: #ffd700 !important; }
   body.oro-mode #theme-toggle { display: none !important; }
-  body.oro-mode #oroThemeBtn { display: inline-block !important; }
+  body.oro-mode #oroThemeBtn { display: inline-block !important; background: #222; color: #fff; }
+  #oroBtn.oro-active { background: #e0e0e0 !important; color: #333 !important; border: none !important; }
   body.oro-light { background: #c9a94e !important; color: #3a2a0a !important; }
   body.oro-light .card { background: linear-gradient(145deg, #e8d48a, #d4b84a) !important; border: 1.5px solid #a07820 !important; box-shadow: 0 2px 8px rgba(140,100,20,0.2) !important; }
-  body.oro-light .card.owned { background: linear-gradient(145deg, #6a9e6a, #4a8a4a) !important; border-color: #2e7d32 !important; }
+  body.oro-light .card.owned { background: #0a3d1f !important; border-color: #00e676 !important; box-shadow: 0 0 12px rgba(0,230,118,0.3) !important; }
   body.oro-light .card-name { color: #2a1a00 !important; }
   body.oro-light .card-rarity { color: #5c3a00 !important; }
   body.oro-light .stats-bar { background: linear-gradient(135deg, #b8942e, #a07820) !important; border-color: #8a6818 !important; }
@@ -157,8 +158,8 @@
   body.oro-light .stat-pill { background: rgba(255,255,255,0.25) !important; border-color: #8a6818 !important; color: #2a1a00 !important; }
   body.oro-light .stat-pill .val { color: #1a0a00 !important; }
   body.oro-light .controls { background: rgba(160,120,32,0.15) !important; border-color: #a07820 !important; }
-  body.oro-light .filter-btn { background: #d4b84a !important; border: 1px solid #a07820 !important; color: #3a2a0a !important; }
-  body.oro-light .filter-btn.active { background: #b8942e !important; border-color: #8a6818 !important; color: #fff !important; box-shadow: 0 0 8px rgba(184,148,46,0.4) !important; }
+  body.oro-light .filter-btn:not(#oroBtn) { background: #d4b84a !important; border: 1px solid #a07820 !important; color: #3a2a0a !important; }
+  body.oro-light .filter-btn.active:not(#oroBtn) { background: #b8942e !important; border-color: #8a6818 !important; color: #fff !important; box-shadow: 0 0 8px rgba(184,148,46,0.4) !important; }
   body.oro-light .toggle-owned { background: #d4b84a !important; border: 1px solid #a07820 !important; color: #3a2a0a !important; }
   body.oro-light .progress-wrap { background: rgba(160,120,32,0.1) !important; border-color: #a07820 !important; }
   body.oro-light .progress-title { color: #3a2a0a !important; }
@@ -1270,11 +1271,14 @@ var sahurActive = false;
 function toggleOro() {
   oroActive = !oroActive;
   const btn = document.getElementById('oroBtn');
-  document.body.classList.toggle('oro-mode', oroActive);
+  if (!oroActive) {
+    document.body.classList.remove('oro-mode', 'oro-light');
+    oroDark = true;
+  } else {
+    document.body.classList.add('oro-mode');
+  }
   btn.textContent = oroActive ? '🙂 Normal' : '🥇 Oro';
-  btn.style.background = oroActive ? '#e0e0e0' : '#ffd700';
-  btn.style.color = oroActive ? '#333' : '#333';
-  btn.style.border = oroActive ? 'none' : 'none';
+  btn.classList.toggle('oro-active', oroActive);
   owned = oroActive ? ownedOro : ownedNormal;
   render();
   updateStickyStats();
@@ -1286,9 +1290,13 @@ function toggleOroTheme() {
   if (oroDark) {
     document.body.classList.remove('oro-light');
     btn.textContent = '☀️ Modo Claro';
+    btn.style.background = '#222';
+    btn.style.color = '#fff';
   } else {
     document.body.classList.add('oro-light');
     btn.textContent = '🌙 Modo Oscuro';
+    btn.style.background = '#fff';
+    btn.style.color = '#333';
   }
 }
 function toggleSahur() {
