@@ -136,7 +136,7 @@
   body.oro-mode .controls { background: rgba(184,134,11,0.1) !important; border-color: #6b5220 !important; }
   body.oro-mode .filter-btn { background: #3d2e12 !important; border: 1px solid #b8860b !important; color: #ffd700 !important; }
   body.oro-mode .filter-btn.active { background: rgba(184,134,11,0.3) !important; border-color: #ffd700 !important; color: #ffd700 !important; box-shadow: 0 0 8px rgba(255,215,0,0.3) !important; }
-  body.oro-mode .toggle-owned { background: #ffd700 !important; color: #2e2207 !important; border: none !important; }
+  body.oro-mode .toggle-owned { }
   body.oro-mode .progress-wrap { background: rgba(184,134,11,0.1) !important; border-color: #6b5220 !important; }
   body.oro-mode .progress-title { color: #ffd700 !important; }
   body.oro-mode .progress-bar-bg { background: #3d2e12 !important; }
@@ -159,7 +159,7 @@
   body.oro-light .controls { background: rgba(255,224,130,0.2) !important; border-color: #d4a017 !important; }
   body.oro-light .filter-btn { background: #fff8e1 !important; border: 1px solid #d4a017 !important; color: #5c4417 !important; }
   body.oro-light .filter-btn.active { background: #ffd54f !important; border-color: #b8860b !important; color: #333 !important; }
-  body.oro-light .toggle-owned { background: #ffd700 !important; color: #333 !important; }
+  body.oro-light .toggle-owned { }
   body.oro-light .progress-wrap { background: rgba(255,224,130,0.15) !important; border-color: #d4a017 !important; }
   body.oro-light .progress-title { color: #5c4417 !important; }
   body.oro-light .progress-bar-bg { background: #ffe0b2 !important; }
@@ -446,6 +446,7 @@ body.theme-green .card[style*="--rc:#ffd700"] .card-rarity { color: #fff200 !imp
       cursor:pointer;letter-spacing:1px;box-shadow:0 2px 8px rgba(0,0,0,.3);
       transition:all .2s;
     ">🌙 Modo Oscuro</button>
+    <button id="oroThemeBtn" onclick="toggleOroTheme()" style="display:none;background:#b8860b;border:none;border-radius:999px;padding:8px 20px;color:#fff;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;cursor:pointer;letter-spacing:1px;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:all .2s;">☀️ Modo Claro</button>
   </div>
   <div style="text-align:center;margin-bottom:4px;">
     <span id="cloudStatus" style="font-size:.75rem;color:#888;">☁️ Conectando...</span>
@@ -1270,7 +1271,7 @@ function toggleOro() {
   const btn = document.getElementById('oroBtn');
   document.body.classList.toggle('oro-mode', oroActive);
   btn.textContent = oroActive ? '🙂 Normal' : '🥇 Oro';
-  btn.style.background = oroActive ? '#b0b0b0' : '#ffd700';
+  btn.style.background = oroActive ? '#d9d9d9' : '#ffd700';
   btn.style.color = oroActive ? '#333' : '#333';
   btn.style.border = oroActive ? 'none' : 'none';
   owned = oroActive ? ownedOro : ownedNormal;
