@@ -475,7 +475,8 @@ body.theme-green .card[style*="--rc:#ffd700"] .card-rarity { color: #fff200 !imp
     <button class="filter-btn" data-rarity="Brainrot God" style="--rc:#ff8800">ð¥ B.God</button>
     <button class="filter-btn" data-rarity="Secret" style="--rc:#dd22ff">ð Secret</button>
     <button class="filter-btn" data-rarity="OG" style="--rc:#ffd700">ð OG</button>
-    <button class="toggle-owned" id="toggleOwned">â Solo obtenidos</button>
+    <button class="toggle-owned" id="toggleOwned">â
+ Solo obtenidos</button>
     <button class="reset-btn" id="resetBtn">ð Reset</button>
     <button class="filter-btn" id="ruletaBtn" onclick="openRuleta()" style="background:#ff4488;border:none;color:#fff;font-weight:800;">ð° Ruleta</button>
     <button class="filter-btn" id="groupsBtn" onclick="toggleGroups()" style="background:#7c3aed;border:none;color:#fff;font-weight:800;">ð¦ Grupos: ON</button>
@@ -1228,7 +1229,8 @@ document.querySelectorAll('.filter-btn[data-rarity]').forEach(btn => {
   });
 });
 document.getElementById('toggleOwned').addEventListener('click', function() {
-  if (ownedFilter === 'all') { ownedFilter = 'owned'; this.textContent = 'â Obtenidos'; this.classList.add('active'); }
+  if (ownedFilter === 'all') { ownedFilter = 'owned'; this.textContent = 'â
+ Obtenidos'; this.classList.add('active'); }
   else if (ownedFilter === 'owned') { ownedFilter = 'unowned'; this.textContent = 'â No Obtenidos'; this.classList.add('active'); }
   else { ownedFilter = 'all'; this.textContent = 'ð Filtrar'; this.classList.remove('active'); }
   render();
@@ -1451,7 +1453,8 @@ function spinRuleta() {
             <div class="ruleta-name" style="color:${rc2.color}">${winner.name}</div>
             <div class="ruleta-rarity" style="color:${rc2.color}">${winner.r.toUpperCase()}</div>
             <div class="ruleta-cost" style="color:#00e676">${winner.costS} &nbsp;|&nbsp; <span style="color:#ffcc00">${winner.inc}</span></div>
-            <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px;">${owned.has(winner.name) ? 'â Ya lo tienes' : 'â Te falta'}</div>
+            <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px;">${owned.has(winner.name) ? 'â
+ Ya lo tienes' : 'â Te falta'}</div>
           </div>`;
         playWinSound();
         spinBtn.disabled = false;
