@@ -139,14 +139,14 @@
   body.oro-mode .toggle-owned { background: #3d2e12 !important; border: 1px solid #b8860b !important; color: #ffd700 !important; }
   body.oro-mode .progress-wrap { background: rgba(184,134,11,0.1) !important; border-color: #6b5220 !important; }
   body.oro-mode .progress-title { color: #ffd700 !important; }
-  body.oro-mode .progress-bar-bg { background: #3d2e12 !important; }
+  body.oro-mode .progress-bar-bg { background: #1a1308 !important; border: 1px solid #5c4417 !important; }
   body.oro-mode .progress-num { color: #ffe082 !important; }
   body.oro-mode .rarity-section { background: transparent !important; }
   body.oro-mode .search-wrap input { background: #3d2e12 !important; border-color: #6b5220 !important; color: #ffe082 !important; }
   body.oro-mode header { background: linear-gradient(135deg, #3d2e12, #2e2207) !important; border-bottom: 1px solid #b8860b !important; }
   body.oro-mode .reset-btn { border-color: #b8860b !important; color: #ffd700 !important; }
   body.oro-mode #theme-toggle { display: none !important; }
-  body.oro-mode #oroThemeBtn { display: inline-block !important; background: #222; color: #fff; }
+  body.oro-mode #oroThemeBtn { display: inline-block !important; background: #fff; color: #333; }
   #oroBtn.oro-active { background: #e0e0e0 !important; color: #333 !important; border: none !important; }
   body.oro-light { background: #c9a94e !important; color: #3a2a0a !important; }
   body.oro-light .card { background: linear-gradient(145deg, #e8d48a, #d4b84a) !important; border: 1.5px solid #a07820 !important; box-shadow: 0 2px 8px rgba(140,100,20,0.2) !important; }
@@ -163,7 +163,7 @@
   body.oro-light .toggle-owned { background: #d4b84a !important; border: 1px solid #a07820 !important; color: #3a2a0a !important; }
   body.oro-light .progress-wrap { background: rgba(160,120,32,0.1) !important; border-color: #a07820 !important; }
   body.oro-light .progress-title { color: #3a2a0a !important; }
-  body.oro-light .progress-bar-bg { background: #b89830 !important; }
+  body.oro-light .progress-bar-bg { background: #8a6818 !important; border: 1px solid #6b5010 !important; }
   body.oro-light .progress-num { color: #2a1a00 !important; }
   body.oro-light .search-wrap input { background: #d4b84a !important; border-color: #a07820 !important; color: #2a1a00 !important; }
   body.oro-light header { background: linear-gradient(135deg, #b8942e, #a07820) !important; border-bottom: 1px solid #8a6818 !important; }
@@ -448,7 +448,7 @@ body.theme-green .card[style*="--rc:#ffd700"] .card-rarity { color: #fff200 !imp
       cursor:pointer;letter-spacing:1px;box-shadow:0 2px 8px rgba(0,0,0,.3);
       transition:all .2s;
     ">🌙 Modo Oscuro</button>
-    <button id="oroThemeBtn" onclick="toggleOroTheme()" style="display:none;background:#b8860b;border:none;border-radius:999px;padding:8px 20px;color:#fff;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;cursor:pointer;letter-spacing:1px;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:all .2s;">☀️ Modo Claro</button>
+    <button id="oroThemeBtn" onclick="toggleOroTheme()" style="display:none;background:#fff;border:none;color:#333;border-radius:999px;padding:8px 20px;color:#fff;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;cursor:pointer;letter-spacing:1px;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:all .2s;">☀️ Modo Claro</button>
   </div>
   <div style="text-align:center;margin-bottom:4px;">
     <span id="cloudStatus" style="font-size:.75rem;color:#888;">☁️ Conectando...</span>
@@ -1032,7 +1032,7 @@ function toggleOwned(name) {
   animateStat('faltanCount', (totalCount - totalOwned) > 0 ? String(totalCount - totalOwned) : '🎉');
   if (statIncome) {
     let ti = 0;
-    BRAINROTS.forEach(b => { if (owned.has(b.name)) ti += parseInc(b.inc); });
+    BRAINROTS.forEach(b => { if (owned.has(b.name)) ti += parseIncOro(b.inc); });
     animateStat('statIncome', fmtN(ti));
   }
 
@@ -1079,6 +1079,23 @@ function parseInc(s) {
   if (v.endsWith('K')) return parseFloat(v)*1e3;
   return parseFloat(v)||0;
 }
+function getOroInc(s) {
+  if (!oroActive) return s;
+  var v = parseInc(s);
+  v = Math.ceil(v * 1.25);
+  return fmtInc(v);
+}
+function fmtInc(n) {
+  if (n>=1e12) return "$"+(n/1e12).toFixed(2)+"T/s";
+  if (n>=1e9) return "$"+(n/1e9).toFixed(2)+"B/s";
+  if (n>=1e6) return "$"+(n/1e6).toFixed(2)+"M/s";
+  if (n>=1e3) return "$"+(n/1e3).toFixed(1)+"K/s";
+  return "$"+n.toFixed(0)+"/s";
+}
+function parseIncOro(s) {
+  var v = parseInc(s);
+  return oroActive ? Math.ceil(v * 1.25) : v;
+}
 function fmtN(n) {
   if (n>=1e12) return '$'+(n/1e12).toFixed(2)+'T/s';
   if (n>=1e9)  return '$'+(n/1e9).toFixed(2)+'B/s';
@@ -1096,7 +1113,7 @@ function render() {
     const sahurOwned = sahurBrainrots.filter(b => owned.has(b.name)).length;
     const sahurFaltan = sahurTotal - sahurOwned;
     let sahurTi = 0;
-    sahurBrainrots.forEach(b => { if (owned.has(b.name)) sahurTi += parseInc(b.inc); });
+    sahurBrainrots.forEach(b => { if (owned.has(b.name)) sahurTi += parseIncOro(b.inc); });
     animateStat('statOwned', sahurOwned + '/' + sahurTotal);
     animateStat('statPct', (sahurOwned/sahurTotal*100).toFixed(2) + '%');
     animateStat('faltanCount', sahurFaltan > 0 ? String(sahurFaltan) : '🎉');
@@ -1110,7 +1127,7 @@ function render() {
     if (faltanEl) faltanEl.textContent = faltan > 0 ? faltan : '🎉';
     animateStat('statPct', (totalOwned/totalCount*100).toFixed(2) + '%');
     let ti = 0;
-    BRAINROTS.forEach(b => { if (owned.has(b.name)) ti += parseInc(b.inc); });
+    BRAINROTS.forEach(b => { if (owned.has(b.name)) ti += parseIncOro(b.inc); });
     animateStat('statIncome', fmtN(ti));
   }
 
@@ -1177,7 +1194,7 @@ function render() {
         + '<div class="card-name">' + b.name + '</div>'
         + '<div class="card-rarity" style="color:' + rc.color + '">' + b.r + '</div>'
         + '<div class="card-cost" style="color:#00e676">' + b.costS + '</div>'
-        + '<div class="card-income" style="color:#ffcc00">' + b.inc + '</div></div>';
+        + '<div class="card-income" style="color:#ffcc00">' + getOroInc(b.inc) + '</div></div>';
     });
     html += '</div></div>';
   } else {
@@ -1211,7 +1228,7 @@ function render() {
           + '<div class="card-name">' + b.name + '</div>'
           + '<div class="card-rarity" style="color:' + rc.color + '">' + b.r + '</div>'
           + '<div class="card-cost" style="color:#00e676">' + b.costS + '</div>'
-          + '<div class="card-income" style="color:#ffcc00">' + b.inc + '</div></div>';
+          + '<div class="card-income" style="color:#ffcc00">' + getOroInc(b.inc) + '</div></div>';
       });
       html += '</div></div>';
     });
@@ -1290,13 +1307,13 @@ function toggleOroTheme() {
   if (oroDark) {
     document.body.classList.remove('oro-light');
     btn.textContent = '☀️ Modo Claro';
-    btn.style.background = '#222';
-    btn.style.color = '#fff';
+    btn.style.background = '#fff';
+    btn.style.color = '#333';
   } else {
     document.body.classList.add('oro-light');
     btn.textContent = '🌙 Modo Oscuro';
-    btn.style.background = '#fff';
-    btn.style.color = '#333';
+    btn.style.background = '#222';
+    btn.style.color = '#fff';
   }
 }
 function toggleSahur() {
@@ -1460,7 +1477,7 @@ function spinRuleta() {
               : `<div class="ruleta-img" style="display:flex;align-items:center;justify-content:center;font-size:2.5rem;">${rc2.emoji}</div>`}
             <div class="ruleta-name" style="color:${rc2.color}">${winner.name}</div>
             <div class="ruleta-rarity" style="color:${rc2.color}">${winner.r.toUpperCase()}</div>
-            <div class="ruleta-cost" style="color:#00e676">${winner.costS} &nbsp;|&nbsp; <span style="color:#ffcc00">${winner.inc}</span></div>
+            <div class="ruleta-cost" style="color:#00e676">${winner.costS} &nbsp;|&nbsp; <span style="color:#ffcc00">${oroActive ? getOroInc(winner.inc) : winner.inc}</span></div>
             <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px;">${owned.has(winner.name) ? '✅ Ya lo tienes' : '❌ Te falta'}</div>
           </div>`;
         playWinSound();
@@ -1482,7 +1499,7 @@ function updateStickyStats() {
   const faltan = total - ownedCount;
   const pct = total ? (ownedCount/total*100).toFixed(2) : '0.00';
   let ti = 0;
-  pool.forEach(b => { if (owned.has(b.name)) ti += parseInc(b.inc); });
+  pool.forEach(b => { if (owned.has(b.name)) ti += parseIncOro(b.inc); });
   animateStat('sStatOwned', ownedCount + '/' + total);
   animateStat('sStatIncome', fmtN(ti));
   animateStat('sStatPct', pct + '%');
