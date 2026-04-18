@@ -1017,13 +1017,15 @@ function toggleOwned(name) {
   cards.forEach(c => {
     const nameEl = c.querySelector('.card-name');
     if (nameEl && nameEl.textContent === name) {
+      const isOG = c.classList.contains('og-card');
+      if (isOG) c.classList.remove('og-card');
       if (!wasOwned) {
         c.classList.add('owned', 'just-obtained');
-        setTimeout(() => c.classList.remove('just-obtained'), 600);
+        setTimeout(() => { c.classList.remove('just-obtained'); if (isOG) c.classList.add('og-card'); }, 600);
       } else {
         c.classList.remove('owned');
         c.classList.add('just-removed');
-        setTimeout(() => c.classList.remove('just-removed'), 400);
+        setTimeout(() => { c.classList.remove('just-removed'); if (isOG) c.classList.add('og-card'); }, 400);
       }
     }
   });
