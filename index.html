@@ -131,6 +131,12 @@
   body.oro-mode .card-name { color: #fff !important; }
   body.oro-mode .card-img-wrap img { filter: sepia(1) saturate(3) brightness(1.1) hue-rotate(-15deg); }
   body.oro-light .card-img-wrap img { filter: sepia(1) saturate(3) brightness(1.15) hue-rotate(-15deg); }
+  body.oro-mode .gold-strong .card-img-wrap img { filter: sepia(1) saturate(4) brightness(1.05) hue-rotate(-20deg) contrast(1.1) !important; }
+  body.oro-mode .gold-slight .card-img-wrap img { filter: sepia(0.8) saturate(2.5) brightness(1.1) hue-rotate(-12deg) !important; }
+  body.oro-mode .gold-extra .card-img-wrap img { filter: sepia(1) saturate(5) brightness(0.95) hue-rotate(-25deg) contrast(1.2) !important; }
+  body.oro-light .gold-strong .card-img-wrap img { filter: sepia(1) saturate(4) brightness(1.1) hue-rotate(-20deg) contrast(1.1) !important; }
+  body.oro-light .gold-slight .card-img-wrap img { filter: sepia(0.8) saturate(2.5) brightness(1.15) hue-rotate(-12deg) !important; }
+  body.oro-light .gold-extra .card-img-wrap img { filter: sepia(1) saturate(5) brightness(1) hue-rotate(-25deg) contrast(1.2) !important; }
   body.oro-mode .stats-bar { background: linear-gradient(135deg, #4e3b18, #6b5220) !important; border-color: #b8860b !important; }
   body.oro-mode .sticky-bar, body.oro-mode #stickyStats { background: linear-gradient(135deg, #3d2e12, #4e3b18) !important; border-bottom: 1px solid #b8860b !important; }
   body.oro-mode .stat-pill { background: rgba(184,134,11,0.25) !important; border-color: #b8860b !important; color: #ffd700 !important; }
@@ -973,6 +979,9 @@ let owned = new Set(JSON.parse(localStorage.getItem('sab_owned_v3') || '[]'));
 let ownedOro = new Set(JSON.parse(localStorage.getItem('sab_owned_oro') || '[]'));
 let ownedNormal = owned;
 var oroActive = false;
+var goldStrong = new Set(["Pengolino Nuvoletto","Holy Arepa","Pipi Kiwi","Bananita Dolphinita","Pinealotto Fruttarino","Malame Amarele","Avocadini Guffo","Perochello Lemonchello","Burbaloni Luliloli","Gatto Celesto","Ballerina Cappuccina","Pipi Potato","Lionel Cactuseli","Chocco Bunny","Sigma Girl","Buho del Cielo","Seraphino Gruyero","Tob Tobi Tobi","Tracoducotulu Delapeladustuz","Trigoligre Frutonni","Nyan Cat","Alessio","Extinct Ballerina","Orcalero Orcala","Vampira Cappucina","Las Cappuchinas","Ballerino Lololo","Divino Platypio","Trenostruzzo Turbo 3000","Urubini Flamenguini","Ballerina Peppermintina","Los Orcalitos","Brr Es Teh Patipum","Lazy Ducky","Frio Ninja","Boba Panda","Buho de Noelo","Bunny Tralala","Anpali Babel","Astrolero Cervalero","Luv Luv Luv","Krupuk Pagi Pagi","Los Tralaleritos","Vulturino Skeletono","Guerriro Digitale","Yess My Examine","Rocco Disco","Job Job Job Sahur","Los Trios","Las Vaquitas Saturnitas","Buntteo","Santteo","Easter Easter Easter Sahur","Bunnyman","Los Jobcitos","Noo My Examine","Naughty Naughty","Bunito Bunito Spinito","Cupid Cupid Sahur","Mi Gatito","Cupid Hotspot","Chill Puppy","Granny","Serafinna Medusella","Noo My Present","Rang Ring Bus","Los Mi Gatitos","Guest 666","Noo My Eggs","Los 25","Tacorillo Crocodillo","Noo my Gold","Los Sweethearts","Spinny Hammy","Chicleteira Cupideira","Cigno Fulgoro","Celularcini Viciosini","Los Candies","Bacuru and Egguru","Chipso and Queso","Esok Sekolah","Los Puggies","W or L","Los Cupids","Los Primos","Lovin Rose","Dug Dug Dug","La Lucky Grande","Gold Gold Gold","Rosetti Tualetti","Garama and Madundung","La Easter Grande","Festive 67","Los Spaghettis","Spooky and Pumpky","Boppin Bunny","Elefanto Frigo","La Food Combinasion","Fragrama and Chocrama","Los Sekolahs","Foxini Lanternini","La Secret Combinasion","Cooki and Milki","Popcuru and Fizzuru","Bunny and Eggy","Hydra Bunny","La Supreme Combinasion","Griffin","Dragon Gingerini","Skibidi Toilet"]);
+var goldSlight = new Set(["Fizzy Soda","Corn Corn Corn Sahur","Belula Beluga","Love Love Love Sahur","Dragon Cannelloni"]);
+var goldExtra = new Set(["Snailo Clovero","Spaghetti Tualetti"]);
 let activeFilter = 'All';
 let searchQuery = '';
 let ownedFilter = 'all'; // 'all' | 'owned' | 'unowned'
@@ -1200,7 +1209,7 @@ function render() {
       const sn = b.name.split("\\").join("\\\\").split("'").join("\\'");
       const rc = RARITY_CFG[b.r];
       const imgHtml = b.img ? '<img src="' + (oroActive && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
-      html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
+      html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + (oroActive && goldExtra.has(b.name)?' gold-extra':oroActive && goldStrong.has(b.name)?' gold-strong':oroActive && goldSlight.has(b.name)?' gold-slight':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
         + '<div class="card-img-wrap">' + imgHtml
         + '<div class="fallback-emoji" style="' + (b.img?'display:none':'') + '">' + rc.emoji + '</div>'
         + '<div class="rarity-dot" style="background:' + rc.color + ';box-shadow:0 0 5px ' + rc.color + '"></div>'
@@ -1234,7 +1243,7 @@ function render() {
         const sn = b.name.split("\\").join("\\\\").split("'").join("\\'");
         const rc = RARITY_CFG[b.r];
         const imgHtml = b.img ? '<img src="' + (oroActive && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
-        html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
+        html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + (oroActive && goldExtra.has(b.name)?' gold-extra':oroActive && goldStrong.has(b.name)?' gold-strong':oroActive && goldSlight.has(b.name)?' gold-slight':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
           + '<div class="card-img-wrap">' + imgHtml
           + '<div class="fallback-emoji" style="' + (b.img?'display:none':'') + '">' + rc.emoji + '</div>'
           + '<div class="rarity-dot" style="background:' + rc.color + ';box-shadow:0 0 5px ' + rc.color + '"></div>'
