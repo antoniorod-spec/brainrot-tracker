@@ -517,11 +517,11 @@ const W = 'https://static.wikia.nocookie.net/stealabr/images/';
 // All brainrots - data from Beebom + wiki images
 const BRAINROTS = [
   // COMMON
-  {name:'Noobini Pizzanini',    r:'Common', cost:25,    costS:'$25',    inc:'$1/s',   img:'https://static.wikia.nocookie.net/stealabr/images/8/83/Noobini_Pizzanini_NEW.png/revision/latest?cb=20251125141732'},
-  {name:'Lirilì Larilà',        r:'Common', cost:250,   costS:'$250',   inc:'$3/s',   img:'https://static.wikia.nocookie.net/stealabr/images/c/c8/Liliri_Lalira.png/revision/latest?cb=20250729184448'},
-  {name:'Tim Cheese',           r:'Common', cost:500,   costS:'$500',   inc:'$5/s',   img:'https://static.wikia.nocookie.net/stealabr/images/1/11/Tim_Cheese.png/revision/latest?cb=20250729184731'},
-  {name:'Fluriflura',           r:'Common', cost:750,   costS:'$750',   inc:'$7/s',   img:'https://static.wikia.nocookie.net/stealabr/images/7/77/Fluriflura.png/revision/latest?cb=20250729184916'},
-  {name:'Talpa Di Fero',        r:'Common', cost:1000,  costS:'$1K',    inc:'$9/s',   img:'https://static.wikia.nocookie.net/stealabr/images/b/b1/Talpa_Di_Fero.png/revision/latest?cb=20250729185233'},
+  {name:'Noobini Pizzanini',    r:'Common', cost:25,    costS:'$25',    inc:'$1/s',   img:'https://static.wikia.nocookie.net/stealabr/images/8/83/Noobini_Pizzanini_NEW.png/revision/latest?cb=20251125141732', imgO:'https://static.wikia.nocookie.net/stealabr/images/e/ea/Gold_noobini.png/revision/latest/scale-to-width-down/250?cb=20260330071318'},
+  {name:'Lirilì Larilà',        r:'Common', cost:250,   costS:'$250',   inc:'$3/s',   img:'https://static.wikia.nocookie.net/stealabr/images/c/c8/Liliri_Lalira.png/revision/latest?cb=20250729184448', imgO:'https://static.wikia.nocookie.net/stealabr/images/9/9a/LiriliGold.png/revision/latest/scale-to-width-down/250?cb=20250921035746'},
+  {name:'Tim Cheese',           r:'Common', cost:500,   costS:'$500',   inc:'$5/s',   img:'https://static.wikia.nocookie.net/stealabr/images/1/11/Tim_Cheese.png/revision/latest?cb=20250729184731', imgO:'https://static.wikia.nocookie.net/stealabr/images/4/43/Goldtim.png/revision/latest?cb=20251125134929'},
+  {name:'Fluriflura',           r:'Common', cost:750,   costS:'$750',   inc:'$7/s',   img:'https://static.wikia.nocookie.net/stealabr/images/7/77/Fluriflura.png/revision/latest?cb=20250729184916', imgO:'https://static.wikia.nocookie.net/stealabr/images/1/1e/GoldFluriflura_.png/revision/latest?cb=20250729185031'},
+  {name:'Talpa Di Fero',        r:'Common', cost:1000,  costS:'$1K',    inc:'$9/s',   img:'https://static.wikia.nocookie.net/stealabr/images/b/b1/Talpa_Di_Fero.png/revision/latest?cb=20250729185233', imgO:'https://static.wikia.nocookie.net/stealabr/images/1/16/TalpaGold.png/revision/latest/scale-to-width-down/250?cb=20250922020843'},
   {name:'Svinina Bombardino',   r:'Common', cost:1200,  costS:'$1.2K',  inc:'$10/s',  img:'https://static.wikia.nocookie.net/stealabr/images/2/26/Homicidio_doloso.png/revision/latest?cb=20250729225915'},
   {name:'Noobini Santanini',    r:'Common', cost:1100,  costS:'$1.1K',  inc:'$11/s',  img:'https://static.wikia.nocookie.net/stealabr/images/c/cd/NoobiniSantanini.png/revision/latest?cb=20251207000659'},
   {name:'Raccooni Jandelini',   r:'Common', cost:1300,  costS:'$1.3K',  inc:'$12/s',  img:'https://static.wikia.nocookie.net/ukradite-breinrot/images/f/f0/RaccooniJandelini.webp/revision/latest?cb=20250831224633&path-prefix=ru'},
@@ -1197,7 +1197,7 @@ function render() {
       const isOwned = owned.has(b.name);
       const sn = b.name.split("\\").join("\\\\").split("'").join("\\'");
       const rc = RARITY_CFG[b.r];
-      const imgHtml = b.img ? '<img src="' + b.img + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
+      const imgHtml = b.img ? '<img src="' + (oroActive && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
       html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
         + '<div class="card-img-wrap">' + imgHtml
         + '<div class="fallback-emoji" style="' + (b.img?'display:none':'') + '">' + rc.emoji + '</div>'
@@ -1231,7 +1231,7 @@ function render() {
         const isOwned = owned.has(b.name);
         const sn = b.name.split("\\").join("\\\\").split("'").join("\\'");
         const rc = RARITY_CFG[b.r];
-        const imgHtml = b.img ? '<img src="' + b.img + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
+        const imgHtml = b.img ? '<img src="' + (oroActive && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
         html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
           + '<div class="card-img-wrap">' + imgHtml
           + '<div class="fallback-emoji" style="' + (b.img?'display:none':'') + '">' + rc.emoji + '</div>'
