@@ -160,7 +160,7 @@
   body.diamante-mode .card:hover { box-shadow: 0 4px 20px rgba(79,195,247,0.3) !important; }
   body.diamante-mode .card.owned { background: linear-gradient(145deg, #1a3d1a, #0d2e0d) !important; border-color: #4caf50 !important; box-shadow: 0 2px 12px rgba(76,175,80,0.3); }
   body.diamante-mode .card-name { color: #fff !important; }
-  body.diamante-mode .card-img-wrap img { filter: sepia(0.3) saturate(1.5) brightness(1.1) hue-rotate(170deg); }
+  body.diamante-mode .card-img-wrap img { filter: grayscale(0.3) brightness(1.1) sepia(0.4) hue-rotate(180deg) saturate(2); }
   body.diamante-mode .stats-bar { background: linear-gradient(135deg, #1a3060, #254080) !important; border-color: #4fc3f7 !important; }
   body.diamante-mode .sticky-bar, body.diamante-mode #stickyStats { background: linear-gradient(135deg, #122240, #1a3060) !important; border-bottom: 1px solid #4fc3f7 !important; }
   body.diamante-mode .stat-pill { background: rgba(79,195,247,0.15) !important; border-color: #4fc3f7 !important; color: #4fc3f7 !important; }
@@ -1344,14 +1344,14 @@ function toggleOro() {
     oroActive = true; diamanteActive = false;
     document.body.classList.add('oro-mode');
     btn.textContent = '💎 Diamante';
-    btn.style.background = '#ffd700'; btn.style.color = '#333';
+    btn.style.background = '#4fc3f7'; btn.style.color = '#fff';
     btn.classList.add('oro-active');
     owned = ownedOro;
   } else if (oroActive) {
     oroActive = false; diamanteActive = true;
     document.body.classList.add('diamante-mode');
     btn.textContent = '🙂 Normal';
-    btn.style.background = '#4fc3f7'; btn.style.color = '#333';
+    btn.style.background = '#e0e0e0'; btn.style.color = '#333';
     btn.classList.remove('oro-active');
     owned = ownedDiamante;
   } else {
