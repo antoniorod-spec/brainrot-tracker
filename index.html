@@ -218,11 +218,11 @@
   @keyframes rainbowHue { 0%{filter:hue-rotate(0deg);} 100%{filter:hue-rotate(360deg);} }
   @keyframes rainbowGlow { 0%{box-shadow:0 0 15px rgba(255,0,0,0.5),0 0 30px rgba(255,0,0,0.2);} 33%{box-shadow:0 0 15px rgba(0,255,0,0.5),0 0 30px rgba(0,255,0,0.2);} 66%{box-shadow:0 0 15px rgba(0,100,255,0.5),0 0 30px rgba(0,100,255,0.2);} 100%{box-shadow:0 0 15px rgba(255,0,0,0.5),0 0 30px rgba(255,0,0,0.2);} }
   body.arcoiris-mode { background: linear-gradient(270deg,#1a0a2e,#0a1a2e,#0a2e1a,#2e2e0a,#2e1a0a,#2e0a1a) !important; background-size: 600% 600% !important; animation: rainbowBg 8s ease infinite !important; color: #fff !important; }
-  body.arcoiris-mode .card { background: linear-gradient(145deg, #1a1a2e, #2e1a2e) !important; border: 1.5px solid; border-image: linear-gradient(90deg,#ff0000,#ff8800,#ffff00,#00cc00,#0088ff,#8800ff) 1 !important; box-shadow: 0 2px 12px rgba(255,255,255,0.1); }
+  body.arcoiris-mode .card { background: linear-gradient(145deg, #1a1a2e, #2e1a2e) !important; border: 2px solid transparent !important; border-radius: 13px !important; background-clip: padding-box !important; outline: 2px solid; outline-offset: -2px; animation: rainbowHue 4s linear infinite; box-shadow: 0 2px 12px rgba(255,255,255,0.1); }
   body.arcoiris-mode .card:hover { box-shadow: 0 4px 20px rgba(255,255,255,0.2) !important; }
   body.arcoiris-mode .card.owned { background: linear-gradient(145deg, #1a3d1a, #0d2e0d) !important; border-color: #4caf50 !important; border-image: none !important; box-shadow: 0 2px 12px rgba(76,175,80,0.3); }
   body.arcoiris-mode .card-name { color: #fff !important; }
-  body.arcoiris-mode .card-img-wrap img { animation: rainbowHue 4s linear infinite; }
+  body.arcoiris-mode .card-img-wrap img { filter: saturate(2) brightness(1.1); animation: rainbowHue 3s linear infinite; }
   body.arcoiris-mode .stats-bar { background: linear-gradient(90deg,#cc0000,#cc8800,#cccc00,#00aa00,#0066cc,#6600cc) !important; background-size: 300% !important; animation: rainbowBg 4s linear infinite !important; }
   body.arcoiris-mode .sticky-bar, body.arcoiris-mode #stickyStats { background: linear-gradient(90deg,#990000,#996600,#999900,#008800,#005599,#550099) !important; background-size: 300% !important; animation: rainbowBg 4s linear infinite !important; }
   body.arcoiris-mode .stat-pill { background: rgba(255,255,255,0.1) !important; border: 1px solid rgba(255,255,255,0.3) !important; color: #fff !important; }
@@ -240,11 +240,36 @@
   body.arcoiris-mode header { background: linear-gradient(90deg,#1a0a2e,#0a1a2e,#0a2e1a,#2e2e0a) !important; background-size: 400% !important; animation: rainbowBg 6s linear infinite !important; border-bottom: 1px solid rgba(255,255,255,0.2) !important; }
   body.arcoiris-mode #theme-toggle { display: none !important; }
   body.arcoiris-mode #oroThemeBtn { display: inline-block !important; background: #fff; color: #333; }
-  body.arcoiris-mode .card.og-card { background: linear-gradient(145deg, #2e1a3e, #1a2e3e) !important; border: 2px solid !important; border-image: linear-gradient(90deg,#ff0000,#ff8800,#ffff00,#00cc00,#0088ff,#8800ff) 1 !important; animation: rainbowGlow 3s linear infinite; }
+  body.arcoiris-mode .card.og-card { background: linear-gradient(145deg, #2e1a3e, #1a2e3e) !important; border: 2px solid transparent !important; border-radius: 13px !important; animation: rainbowGlow 3s linear infinite; }
   body.arcoiris-mode .card.og-card .card-name { color: #fff !important; text-shadow: 0 0 10px rgba(255,255,255,0.5) !important; }
   body.arcoiris-mode .card.owned.og-card { background: linear-gradient(145deg, #1a3d1a, #0d2e0d) !important; border-color: #4caf50 !important; border-image: none !important; box-shadow: 0 2px 12px rgba(76,175,80,0.3); animation: none; }
   body.arcoiris-mode .gold-strong .card-img-wrap img { animation: rainbowHue 3s linear infinite !important; }
   body.arcoiris-mode .gold-extra .card-img-wrap img { animation: rainbowHue 2s linear infinite !important; }
+  body.arcoiris-light { background: linear-gradient(270deg,#f0d0d0,#d0e0f0,#d0f0d0,#f0f0d0,#f0d0e0) !important; background-size: 600% 600% !important; animation: rainbowBg 8s ease infinite !important; color: #222 !important; }
+  body.arcoiris-light .card { background: linear-gradient(145deg, #fff, #f8f0ff) !important; border: 2px solid transparent !important; border-radius: 13px !important; outline: 2px solid; outline-offset: -2px; animation: rainbowHue 4s linear infinite; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  body.arcoiris-light .card.owned { background: linear-gradient(145deg, #5a9e5a, #3d8a3d) !important; border-color: #43a047 !important; outline: none !important; animation: none !important; }
+  body.arcoiris-light .card-name { color: #222 !important; }
+  body.arcoiris-light .card-income { color: #555 !important; }
+  body.arcoiris-light .card-cost { color: #2e7d32 !important; }
+  body.arcoiris-light .card-img-wrap img { filter: saturate(2) brightness(1.1); animation: rainbowHue 3s linear infinite; }
+  body.arcoiris-light .stats-bar { background: linear-gradient(90deg,#e06060,#e0a060,#e0e060,#60c060,#6080e0,#a060e0) !important; background-size: 300% !important; animation: rainbowBg 4s linear infinite !important; }
+  body.arcoiris-light .sticky-bar, body.arcoiris-light #stickyStats { background: linear-gradient(90deg,#d05050,#d09050,#d0d050,#50b050,#5070d0,#9050d0) !important; background-size: 300% !important; animation: rainbowBg 4s linear infinite !important; }
+  body.arcoiris-light .stat-pill { background: rgba(255,255,255,0.4) !important; border: 1px solid rgba(0,0,0,0.2) !important; color: #222 !important; }
+  body.arcoiris-light .stat-pill .val { color: #222 !important; }
+  body.arcoiris-light .controls { background: rgba(255,255,255,0.2) !important; border-color: rgba(0,0,0,0.1) !important; }
+  body.arcoiris-light .filter-btn:not(#oroBtn):not(#ruletaBtn):not(#groupsBtn):not(#sahurBtn) { background: #fff !important; border: 1px solid rgba(0,0,0,0.2) !important; color: #333 !important; }
+  body.arcoiris-light .filter-btn.active:not(#oroBtn):not(#ruletaBtn):not(#groupsBtn):not(#sahurBtn) { background: rgba(0,0,0,0.15) !important; border-color: #333 !important; color: #222 !important; }
+  body.arcoiris-light .toggle-owned { background: #fff !important; border: 1px solid rgba(0,0,0,0.2) !important; color: #333 !important; }
+  body.arcoiris-light .progress-wrap { background: rgba(255,255,255,0.2) !important; border-color: rgba(0,0,0,0.1) !important; }
+  body.arcoiris-light .progress-title { color: #222 !important; }
+  body.arcoiris-light .progress-bar-bg { background: rgba(0,0,0,0.15) !important; }
+  body.arcoiris-light .progress-num { color: #222 !important; }
+  body.arcoiris-light .progress-label { color: #222 !important; }
+  body.arcoiris-light .search-wrap input { background: #fff !important; border-color: rgba(0,0,0,0.2) !important; color: #222 !important; }
+  body.arcoiris-light header { background: linear-gradient(90deg,#e0a0a0,#a0c0e0,#a0e0a0,#e0e0a0) !important; background-size: 400% !important; animation: rainbowBg 6s linear infinite !important; }
+  body.arcoiris-light .rarity-section { background: transparent !important; }
+  body.arcoiris-light .card.og-card { background: linear-gradient(145deg, #fff, #f0f0ff) !important; border-radius: 13px !important; animation: rainbowGlow 3s linear infinite; }
+  body.arcoiris-light .card.owned.og-card { background: linear-gradient(145deg, #5a9e5a, #3d8a3d) !important; outline: none !important; animation: none; }
   body.oro-mode .card.og-card { background: linear-gradient(145deg, #4a3a10, #5c4a18) !important; border: 2px solid #ffd700 !important; box-shadow: 0 0 15px rgba(255,215,0,0.5), 0 0 30px rgba(255,215,0,0.2); animation: oroGlow 2s ease-in-out infinite; }
   body.oro-mode .card.og-card .card-name { color: #ffd700 !important; text-shadow: 0 0 8px rgba(255,215,0,0.5) !important; }
   body.oro-light .card.og-card { background: linear-gradient(145deg, #ffd700, #e8c020) !important; border: 3px solid #b8860b !important; box-shadow: 0 0 20px rgba(184,134,11,0.8), 0 0 40px rgba(184,134,11,0.4), 0 0 60px rgba(184,134,11,0.2); animation: oroGlowLight 2s ease-in-out infinite; }
@@ -1198,7 +1223,8 @@ function parseInc(s) {
 function getOroInc(s) {
   if (!oroActive && !diamanteActive && !arcoirisActive) return s;
   var v = parseInc(s);
-  v = Math.ceil(v * 1.25);
+  var mult = arcoirisActive ? 10 : diamanteActive ? 1.5 : 1.25;
+  v = Math.ceil(v * mult);
   return fmtInc(v);
 }
 function fmtInc(n) {
@@ -1211,7 +1237,7 @@ function fmtInc(n) {
 }
 function parseIncOro(s) {
   var v = parseInc(s);
-  return (oroActive || diamanteActive) ? Math.ceil(v * 1.25) : v;
+  var mult = arcoirisActive ? 10 : diamanteActive ? 1.5 : oroActive ? 1.25 : 1; return mult > 1 ? Math.ceil(v * mult) : v;
 }
 function fmtN(n) {
   if (n>=1e12) return '$'+(n/1e12).toFixed(2)+'T/s';
