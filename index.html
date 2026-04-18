@@ -155,6 +155,33 @@
   body.oro-mode .reset-btn { }
   body.oro-mode #theme-toggle { display: none !important; }
   body.oro-mode #oroThemeBtn { display: inline-block !important; background: #fff; color: #333; }
+  body.diamante-mode { background: #0a1628 !important; transition: background 0.5s; color: #b3e5fc !important; }
+  body.diamante-mode .card { background: linear-gradient(145deg, #122240, #1a3060) !important; border: 1.5px solid #4fc3f7 !important; box-shadow: 0 2px 12px rgba(79,195,247,0.2); }
+  body.diamante-mode .card:hover { box-shadow: 0 4px 20px rgba(79,195,247,0.3) !important; }
+  body.diamante-mode .card.owned { background: linear-gradient(145deg, #1a3d1a, #0d2e0d) !important; border-color: #4caf50 !important; box-shadow: 0 2px 12px rgba(76,175,80,0.3); }
+  body.diamante-mode .card-name { color: #fff !important; }
+  body.diamante-mode .card-img-wrap img { filter: sepia(0.3) saturate(1.5) brightness(1.1) hue-rotate(170deg); }
+  body.diamante-mode .stats-bar { background: linear-gradient(135deg, #1a3060, #254080) !important; border-color: #4fc3f7 !important; }
+  body.diamante-mode .sticky-bar, body.diamante-mode #stickyStats { background: linear-gradient(135deg, #122240, #1a3060) !important; border-bottom: 1px solid #4fc3f7 !important; }
+  body.diamante-mode .stat-pill { background: rgba(79,195,247,0.15) !important; border-color: #4fc3f7 !important; color: #4fc3f7 !important; }
+  body.diamante-mode .stat-pill .val { color: #b3e5fc !important; }
+  body.diamante-mode .controls { background: rgba(79,195,247,0.08) !important; border-color: #1a3060 !important; }
+  body.diamante-mode .filter-btn:not(#oroBtn):not(#ruletaBtn):not(#groupsBtn):not(#sahurBtn) { background: #122240 !important; border: 1px solid #4fc3f7 !important; color: #4fc3f7 !important; }
+  body.diamante-mode .filter-btn.active:not(#oroBtn):not(#ruletaBtn):not(#groupsBtn):not(#sahurBtn) { background: rgba(79,195,247,0.25) !important; border-color: #81d4fa !important; color: #81d4fa !important; box-shadow: 0 0 8px rgba(79,195,247,0.3) !important; }
+  body.diamante-mode .toggle-owned { background: #122240 !important; border: 1px solid #4fc3f7 !important; color: #4fc3f7 !important; }
+  body.diamante-mode .progress-wrap { background: rgba(79,195,247,0.08) !important; border-color: #1a3060 !important; }
+  body.diamante-mode .progress-title { color: #4fc3f7 !important; }
+  body.diamante-mode .progress-bar-bg { background: #0a1628 !important; border: 1px solid #1a3060 !important; }
+  body.diamante-mode .progress-num { color: #b3e5fc !important; }
+  body.diamante-mode .rarity-section { background: transparent !important; }
+  body.diamante-mode .search-wrap input { background: #122240 !important; border-color: #1a3060 !important; color: #b3e5fc !important; }
+  body.diamante-mode header { background: linear-gradient(135deg, #122240, #0a1628) !important; border-bottom: 1px solid #4fc3f7 !important; }
+  body.diamante-mode #theme-toggle { display: none !important; }
+  body.diamante-mode #oroThemeBtn { display: inline-block !important; background: #fff; color: #333; }
+  body.diamante-mode .card.og-card { background: linear-gradient(145deg, #1a3a6a, #254a8a) !important; border: 2px solid #4fc3f7 !important; box-shadow: 0 0 15px rgba(79,195,247,0.5), 0 0 30px rgba(79,195,247,0.2); animation: diamanteGlow 2s ease-in-out infinite; }
+  body.diamante-mode .card.og-card .card-name { color: #4fc3f7 !important; text-shadow: 0 0 8px rgba(79,195,247,0.5) !important; }
+  body.diamante-mode .card.owned.og-card { background: linear-gradient(145deg, #1a3d1a, #0d2e0d) !important; border-color: #4caf50 !important; box-shadow: 0 2px 12px rgba(76,175,80,0.3); }
+  @keyframes diamanteGlow { 0%,100%{box-shadow:0 0 15px rgba(79,195,247,0.4),0 0 30px rgba(79,195,247,0.15);} 50%{box-shadow:0 0 25px rgba(79,195,247,0.7),0 0 50px rgba(79,195,247,0.3);} }
   body.oro-mode .card.og-card { background: linear-gradient(145deg, #4a3a10, #5c4a18) !important; border: 2px solid #ffd700 !important; box-shadow: 0 0 15px rgba(255,215,0,0.5), 0 0 30px rgba(255,215,0,0.2); animation: oroGlow 2s ease-in-out infinite; }
   body.oro-mode .card.og-card .card-name { color: #ffd700 !important; text-shadow: 0 0 8px rgba(255,215,0,0.5) !important; }
   body.oro-light .card.og-card { background: linear-gradient(145deg, #ffd700, #e8c020) !important; border: 3px solid #b8860b !important; box-shadow: 0 0 20px rgba(184,134,11,0.8), 0 0 40px rgba(184,134,11,0.4), 0 0 60px rgba(184,134,11,0.2); animation: oroGlowLight 2s ease-in-out infinite; }
@@ -979,6 +1006,8 @@ let owned = new Set(JSON.parse(localStorage.getItem('sab_owned_v3') || '[]'));
 let ownedOro = new Set(JSON.parse(localStorage.getItem('sab_owned_oro') || '[]'));
 let ownedNormal = owned;
 var oroActive = false;
+var diamanteActive = false;
+let ownedDiamante = new Set(JSON.parse(localStorage.getItem('sab_owned_diamante') || '[]'));
 var goldStrong = new Set(["Pengolino Nuvoletto","Holy Arepa","Pipi Kiwi","Bananita Dolphinita","Pinealotto Fruttarino","Malame Amarele","Avocadini Guffo","Perochello Lemonchello","Burbaloni Luliloli","Gatto Celesto","Ballerina Cappuccina","Pipi Potato","Lionel Cactuseli","Chocco Bunny","Sigma Girl","Buho del Cielo","Seraphino Gruyero","Tob Tobi Tobi","Tracoducotulu Delapeladustuz","Trigoligre Frutonni","Nyan Cat","Alessio","Extinct Ballerina","Orcalero Orcala","Vampira Cappucina","Las Cappuchinas","Ballerino Lololo","Divino Platypio","Trenostruzzo Turbo 3000","Urubini Flamenguini","Brr Es Teh Patipum","Lazy Ducky","Frio Ninja","Boba Panda","Buho de Noelo","Bunny Tralala","Anpali Babel","Astrolero Cervalero","Luv Luv Luv","Krupuk Pagi Pagi","""Vulturino Skeletono","Guerriro Digitale","Yess My Examine","Rocco Disco","Job Job Job Sahur","Los Trios","Las Vaquitas Saturnitas","Buntteo","Santteo","Easter Easter Easter Sahur","Bunnyman","Los Jobcitos","Noo My Examine","Naughty Naughty","Bunito Bunito Spinito","Cupid Cupid Sahur","Mi Gatito","Cupid Hotspot","Chill Puppy","Granny","Serafinna Medusella","Noo My Present","Rang Ring Bus","Los Mi Gatitos","Guest 666","Noo My Eggs","Los 25","Tacorillo Crocodillo","Noo my Gold","Los Sweethearts","Spinny Hammy","Chicleteira Cupideira","Cigno Fulgoro","Celularcini Viciosini","Los Candies","Bacuru and Egguru","Chipso and Queso","Esok Sekolah","Los Puggies","W or L","Los Cupids","Los Primos","Lovin Rose","Dug Dug Dug","La Lucky Grande","Gold Gold Gold","Rosetti Tualetti","Garama and Madundung","La Easter Grande","Festive 67","Los Spaghettis","Spooky and Pumpky","Boppin Bunny","Elefanto Frigo","La Food Combinasion","Fragrama and Chocrama","Los Sekolahs","Foxini Lanternini","La Secret Combinasion","Cooki and Milki","Popcuru and Fizzuru","Bunny and Eggy","Hydra Bunny","La Supreme Combinasion","Griffin","Dragon Gingerini","Skibidi Toilet","Trenostruzzo Turbo 4000","Blackhole Goat","Cappuccino Assassino","Los Tungtungtungcitos"]);
 var goldSlight = new Set(["Fizzy Soda","Corn Corn Corn Sahur","Belula Beluga","Love Love Love Sahur","Dragon Cannelloni"]);
 var goldExtra = new Set(["Snailo Clovero","Spaghetti Tualetti","Ballerina Peppermintina","Los Orcalitos","Los Tralaleritos","Las Tralaleritas"]);
@@ -987,7 +1016,7 @@ let searchQuery = '';
 let ownedFilter = 'all'; // 'all' | 'owned' | 'unowned'
 
 function saveOwned() {
-  var key = oroActive ? 'sab_owned_oro' : 'sab_owned_v3';
+  var key = diamanteActive ? 'sab_owned_diamante' : oroActive ? 'sab_owned_oro' : 'sab_owned_v3';
   localStorage.setItem(key, JSON.stringify([...owned]));
   if (window._fbSave) window._fbSave(owned);
 }
@@ -1102,7 +1131,7 @@ function parseInc(s) {
   return parseFloat(v)||0;
 }
 function getOroInc(s) {
-  if (!oroActive) return s;
+  if (!oroActive && !diamanteActive) return s;
   var v = parseInc(s);
   v = Math.ceil(v * 1.25);
   return fmtInc(v);
@@ -1117,7 +1146,7 @@ function fmtInc(n) {
 }
 function parseIncOro(s) {
   var v = parseInc(s);
-  return oroActive ? Math.ceil(v * 1.25) : v;
+  return (oroActive || diamanteActive) ? Math.ceil(v * 1.25) : v;
 }
 function fmtN(n) {
   if (n>=1e12) return '$'+(n/1e12).toFixed(2)+'T/s';
@@ -1208,8 +1237,8 @@ function render() {
       const isOwned = owned.has(b.name);
       const sn = b.name.split("\\").join("\\\\").split("'").join("\\'");
       const rc = RARITY_CFG[b.r];
-      const imgHtml = b.img ? '<img src="' + (oroActive && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
-      html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + (oroActive && goldExtra.has(b.name)?' gold-extra':oroActive && goldStrong.has(b.name)?' gold-strong':oroActive && goldSlight.has(b.name)?' gold-slight':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
+      const imgHtml = b.img ? '<img src="' + ((oroActive || diamanteActive) && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
+      html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + ((oroActive || diamanteActive) && goldExtra.has(b.name)?' gold-extra':(oroActive || diamanteActive) && goldStrong.has(b.name)?' gold-strong':(oroActive || diamanteActive) && goldSlight.has(b.name)?' gold-slight':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
         + '<div class="card-img-wrap">' + imgHtml
         + '<div class="fallback-emoji" style="' + (b.img?'display:none':'') + '">' + rc.emoji + '</div>'
         + '<div class="rarity-dot" style="background:' + rc.color + ';box-shadow:0 0 5px ' + rc.color + '"></div>'
@@ -1242,8 +1271,8 @@ function render() {
         const isOwned = owned.has(b.name);
         const sn = b.name.split("\\").join("\\\\").split("'").join("\\'");
         const rc = RARITY_CFG[b.r];
-        const imgHtml = b.img ? '<img src="' + (oroActive && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
-        html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + (oroActive && goldExtra.has(b.name)?' gold-extra':oroActive && goldStrong.has(b.name)?' gold-strong':oroActive && goldSlight.has(b.name)?' gold-slight':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
+        const imgHtml = b.img ? '<img src="' + ((oroActive || diamanteActive) && b.imgO ? b.imgO : b.img) + '" alt="' + b.name + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '';
+        html += '<div class="card ' + (isOwned?'owned':'') + (b.r==='OG'?' og-card':'') + ((oroActive || diamanteActive) && goldExtra.has(b.name)?' gold-extra':(oroActive || diamanteActive) && goldStrong.has(b.name)?' gold-strong':(oroActive || diamanteActive) && goldSlight.has(b.name)?' gold-slight':'') + '" style="--rc:' + rc.color + '" onclick="toggleOwned(\'' + sn + '\')">'
           + '<div class="card-img-wrap">' + imgHtml
           + '<div class="fallback-emoji" style="' + (b.img?'display:none':'') + '">' + rc.emoji + '</div>'
           + '<div class="rarity-dot" style="background:' + rc.color + ';box-shadow:0 0 5px ' + rc.color + '"></div>'
@@ -1309,37 +1338,47 @@ render();
 
 var sahurActive = false;
 function toggleOro() {
-  oroActive = !oroActive;
-  const btn = document.getElementById('oroBtn');
-  if (!oroActive) {
-    document.body.classList.remove('oro-mode', 'oro-light');
+  var btn = document.getElementById('oroBtn');
+  document.body.classList.remove('oro-mode','oro-light','diamante-mode','diamante-light','theme-dark','theme-green');
+  if (!oroActive && !diamanteActive) {
+    oroActive = true; diamanteActive = false;
+    document.body.classList.add('oro-mode');
+    btn.textContent = '💎 Diamante';
+    btn.style.background = '#ffd700'; btn.style.color = '#333';
+    btn.classList.add('oro-active');
+    owned = ownedOro;
+  } else if (oroActive) {
+    oroActive = false; diamanteActive = true;
+    document.body.classList.add('diamante-mode');
+    btn.textContent = '🙂 Normal';
+    btn.style.background = '#4fc3f7'; btn.style.color = '#333';
+    btn.classList.remove('oro-active');
+    owned = ownedDiamante;
+  } else {
+    diamanteActive = false; oroActive = false;
     oroDark = true;
     var saved = localStorage.getItem('brainrot-theme') || 'dark';
     document.body.classList.add('theme-' + saved);
-  } else {
-    document.body.classList.remove('theme-dark', 'theme-green');
-    document.body.classList.add('oro-mode');
+    btn.textContent = '🥇 Oro';
+    btn.style.background = '#ffd700'; btn.style.color = '#333';
+    owned = ownedNormal;
   }
-  btn.textContent = oroActive ? '🙂 Normal' : '🥇 Oro';
-  btn.classList.toggle('oro-active', oroActive);
-  owned = oroActive ? ownedOro : ownedNormal;
   render();
   updateStickyStats();
 }
 var oroDark = true;
 function toggleOroTheme() {
   oroDark = !oroDark;
-  const btn = document.getElementById('oroThemeBtn');
+  var btn = document.getElementById('oroThemeBtn');
   if (oroDark) {
-    document.body.classList.remove('oro-light');
+    document.body.classList.remove('oro-light','diamante-light');
     btn.textContent = '☀️ Modo Claro';
-    btn.style.background = '#fff';
-    btn.style.color = '#333';
+    btn.style.background = '#fff'; btn.style.color = '#333';
   } else {
-    document.body.classList.add('oro-light');
+    if (diamanteActive) { document.body.classList.add('diamante-light'); }
+    else { document.body.classList.add('oro-light'); }
     btn.textContent = '🌙 Modo Oscuro';
-    btn.style.background = '#222';
-    btn.style.color = '#fff';
+    btn.style.background = '#222'; btn.style.color = '#fff';
   }
 }
 function toggleSahur() {
